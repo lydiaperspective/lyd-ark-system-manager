@@ -54,19 +54,12 @@ enum StorageCommand {
     Status,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 #[serde(default)]
 struct AppConfig {
     storage: StorageConfig,
 }
 
-impl Default for AppConfig {
-    fn default() -> Self {
-        Self {
-            storage: StorageConfig::default(),
-        }
-    }
-}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(default)]
