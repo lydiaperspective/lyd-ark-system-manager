@@ -26,8 +26,7 @@ jobs:
         run: cargo fmt --all -- --check
 
       - name: Run tests
-        run: cargo test --locked
-        continue-on-error: true
+        run: cargo test
 
       - name: Check compilation
         run: cargo check
