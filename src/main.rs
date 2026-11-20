@@ -60,7 +60,6 @@ struct AppConfig {
     storage: StorageConfig,
 }
 
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(default)]
 struct StorageConfig {
