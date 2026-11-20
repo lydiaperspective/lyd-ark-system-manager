@@ -76,3 +76,13 @@ See [docs/CONFIGURATION.md](docs/CONFIGURATION.md) for the configuration format.
 - Treat missing external disks as unavailable; never create a normal directory underneath an expected mount point and mistake it for the mounted storage.
 - Do not automatically expose NFS or Samba shares to untrusted networks.
 - Keep privileged operations explicit, auditable, and narrowly scoped.
+
+## Permissions and rootless containers
+
+On Lyd Ark images, the standardized `/ark` tree is intended to be accessible to the administrator without sudo. The image creates an `ark` group and gives the initial administrator membership in that group. The standardized directories use group ownership `ark` and setgid permissions so newly created entries inherit the shared group.
+
+Rootless Podman runs as the administrator's UID. Bind-mounted files still obey normal host UID/GID and permission checks; group membership on the host does not automatically guarantee that every container process receives supplementary groups. For group-based access inside a container, configure Podman to pass the relevant group (for example, `--group-add keep-groups` when supported by the selected OCI runtime) or use an explicit mapped GID and suitable directory permissions. Do not make all storage world-writable as a workaround.
+
+GPU device nodes are under `/dev/dri` (not `/dri`). The initial administrator is added to the `video` and `render` groups so it can access DRM devices when present. A container must also be given the device, such as `--device /dev/dri`, and retain the required group permissions. Actual GPU acceleration additionally depends on host drivers and compatible userspace libraries in the container.
+
+The image-level group and directory setup currently applies to newly installed systems and the first administrator account. Existing installations need a deliberate migration to create the groups, apply directory ownership, and add the administrator to supplementary groups; changing group membership takes effect after a new login session.
