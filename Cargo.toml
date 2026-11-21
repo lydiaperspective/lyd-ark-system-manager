@@ -6,7 +6,7 @@ description = "System management CLI for Lyd Ark"
 license = "MIT"
 
 [[bin]]
-name = "ark-system-manager"
+name = "lydsys"
 path = "src/main.rs"
 
 [dependencies]
