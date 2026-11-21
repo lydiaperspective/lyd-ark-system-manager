@@ -9,7 +9,7 @@ const DEFAULT_CONFIG_PATH: &str = "/etc/ark/system-manager.toml";
 
 #[derive(Debug, Parser)]
 #[command(
-    name = "ark-system-manager",
+    name = "lydsys",
     version,
     about = "Manage Lyd Ark system configuration and standardized storage"
 )]
