@@ -30,17 +30,17 @@ cargo build --release
 cargo test
 ```
 
-The binary is named `ark-system-manager`.
+The executable command is `lydsys`.
 
 ## Usage
 
 ```bash
-ark-system-manager --help
-ark-system-manager info
-ark-system-manager config path
-ark-system-manager config show
-ark-system-manager storage list
-ark-system-manager storage status
+lydsys --help
+lydsys info
+lydsys config path
+lydsys config show
+lydsys storage list
+lydsys storage status
 ```
 
 The default configuration file is:
